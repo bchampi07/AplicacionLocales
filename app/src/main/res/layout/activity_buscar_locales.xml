@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+    <LinearLayout
+        android:id="@+id/main"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/fondo_gradiente"    >
+        <TextView
+            android:id="@+id/titleBuscar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Buscar Locales"
+            android:textSize="20sp"
+            android:textColor="@android:color/black"
+            android:textStyle="bold"
+            android:layout_gravity="center"/>
+
+        <!-- Fecha desde -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Desde: "/>
+        <EditText
+            android:id="@+id/desdeEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="-- : --"
+            android:clickable="true" />
+
+        <!-- Fecha hasta -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Hasta:" />
+
+        <EditText
+            android:id="@+id/hastaEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="-- : --"
+            android:focusable="false"
+            android:clickable="true"/>
+
+        <!-- Boton -->
+
+        <Button
+            android:id="@+id/buscarButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Buscar"
+            android:textColor="@android:color/white"
+            android:textStyle="bold"
+            android:backgroundTint="@android:color/black"
+            android:layout_marginTop="10dp" />
+
+        <!-- Locales disponibles -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Locales disponibles: Local A, Local B"
+            android:layout_marginTop="10dp" />
+
+        <!-- Reserva FLEXIBLE -->
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Reserva Flexible"
+            android:textStyle="bold"
+            android:layout_marginTop="16dp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Horas:" />
+
+        <EditText
+            android:id="@+id/horasEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number" />
+
+        <!-- Costo -->
+
+        <TextView
+            android:id="@+id/costoTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Costo Promocional: S/. 100" />
+    </LinearLayout>
+</ScrollView>

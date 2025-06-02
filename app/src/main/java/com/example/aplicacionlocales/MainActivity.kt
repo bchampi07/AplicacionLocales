@@ -39,6 +39,10 @@ class MainActivity : AppCompatActivity() {
             } else {
                 Toast.makeText(this, "Bienvenido $email", Toast.LENGTH_SHORT).show()
             }
+
+            val intent = Intent(this, BuscarLocales::class.java)
+            startActivity(intent)
+            finish()
         }
 
         tvRegistro.setOnClickListener {
