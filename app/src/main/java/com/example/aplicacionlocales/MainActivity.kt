@@ -13,8 +13,12 @@ import android.widget.Toast
 import android.text.method.HideReturnsTransformationMethod
 import android.text.method.PasswordTransformationMethod
 import android.view.MotionEvent
+import com.google.firebase.auth.FirebaseAuth
 
 class MainActivity : AppCompatActivity() {
+
+    private lateinit var mAuth: FirebaseAuth
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -25,6 +29,7 @@ class MainActivity : AppCompatActivity() {
             insets
         }
 
+        mAuth = FirebaseAuth.getInstance()
         val emailInput = findViewById<EditText>(R.id.emailInput)
         val passwordInput = findViewById<EditText>(R.id.passwordInput)
         val loginButton = findViewById<Button>(R.id.btnRegistrar)
@@ -37,12 +42,19 @@ class MainActivity : AppCompatActivity() {
             if (email.isEmpty() || password.isEmpty()) {
                 Toast.makeText(this, "Por favor debe completar todos los campos", Toast.LENGTH_SHORT).show()
             } else {
-                Toast.makeText(this, "Bienvenido $email", Toast.LENGTH_SHORT).show()
+                mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener { task ->
+                    if (task.isSuccessful){
+                        Toast.makeText(this, "Bienvenido $email", Toast.LENGTH_SHORT).show()
+                        val intent = Intent(this, BuscarLocales::class.java)
+                        startActivity(intent)
+                        finish()
+                    } else {
+                        Toast.makeText(this, "Error al iniciar sesión", Toast.LENGTH_SHORT).show()
+                    }
+                }
             }
 
-            val intent = Intent(this, BuscarLocales::class.java)
-            startActivity(intent)
-            finish()
+
         }
 
         tvRegistro.setOnClickListener {

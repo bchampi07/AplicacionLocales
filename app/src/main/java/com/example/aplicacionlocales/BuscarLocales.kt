@@ -1,20 +1,39 @@
 package com.example.aplicacionlocales
 
 import android.os.Bundle
+import android.widget.ArrayAdapter
+import android.widget.LinearLayout
+import android.widget.ListView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 
 class BuscarLocales : AppCompatActivity() {
+
+    private lateinit var recyclerLocales: RecyclerView
+    private lateinit var localAdapter: LocalAdapter
+    private val listaLocales = mutableListOf<Local>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
         setContentView(R.layout.activity_buscar_locales)
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
-        }
+
+        recyclerLocales = findViewById(R.id.recyclerLocales)
+        recyclerLocales.layoutManager = GridLayoutManager(this, 2)
+
+        // Agregar locales
+
+        listaLocales.add(Local("Local 1", "Arequipa", "S/.80", R.drawable.local1))
+        listaLocales.add(Local("Local 2", "Arequipa", "S/.80", R.drawable.local2))
+        listaLocales.add(Local("Local 3", "Arequipa", "S/.80", R.drawable.local1))
+        listaLocales.add(Local("Local 4", "Arequipa", "S/.80", R.drawable.local1))
+        listaLocales.add(Local("Local 5", "Arequipa", "S/.80", R.drawable.local1))
+
+
+        localAdapter = LocalAdapter(listaLocales)
+        recyclerLocales.adapter = localAdapter
     }
 }

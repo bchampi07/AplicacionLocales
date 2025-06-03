@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
 
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="16dp">
@@ -25,27 +26,14 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Desde: "/>
+            android:text="Ciudad "/>
         <EditText
             android:id="@+id/desdeEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="-- : --"
+            android:hint="Ciudad"
             android:clickable="true" />
 
-        <!-- Fecha hasta -->
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Hasta:" />
-
-        <EditText
-            android:id="@+id/hastaEditText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="-- : --"
-            android:focusable="false"
-            android:clickable="true"/>
 
         <!-- Boton -->
 
@@ -63,34 +51,15 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Locales disponibles: Local A, Local B"
+            android:text="Locales disponibles: 10"
             android:layout_marginTop="10dp" />
 
-        <!-- Reserva FLEXIBLE -->
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Reserva Flexible"
-            android:textStyle="bold"
-            android:layout_marginTop="16dp" />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Horas:" />
-
-        <EditText
-            android:id="@+id/horasEditText"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerLocales"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="number" />
+            android:layout_marginTop="16dp"
+            android:scrollbars="vertical" />
 
-        <!-- Costo -->
-
-        <TextView
-            android:id="@+id/costoTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Costo Promocional: S/. 100" />
     </LinearLayout>
 </ScrollView>
