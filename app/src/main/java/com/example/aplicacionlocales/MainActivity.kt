@@ -14,6 +14,10 @@ import android.text.method.HideReturnsTransformationMethod
 import android.text.method.PasswordTransformationMethod
 import android.view.MotionEvent
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 
 class MainActivity : AppCompatActivity() {
 
@@ -30,6 +34,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         mAuth = FirebaseAuth.getInstance()
+        val database = FirebaseDatabase.getInstance()
         val emailInput = findViewById<EditText>(R.id.emailInput)
         val passwordInput = findViewById<EditText>(R.id.passwordInput)
         val loginButton = findViewById<Button>(R.id.btnRegistrar)
@@ -45,9 +50,28 @@ class MainActivity : AppCompatActivity() {
                 mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener { task ->
                     if (task.isSuccessful){
                         Toast.makeText(this, "Bienvenido $email", Toast.LENGTH_SHORT).show()
-                        val intent = Intent(this, BuscarLocales::class.java)
-                        startActivity(intent)
-                        finish()
+                        val userRef = database.getReference("usuarios")
+                        val consulta = userRef.orderByChild("email").equalTo(email)
+                        consulta.addListenerForSingleValueEvent(object : ValueEventListener {
+                            override fun onDataChange(snapshot: DataSnapshot) {
+                                if (snapshot.exists()) {
+                                    for (userSnap in snapshot.children) {
+                                        val intent = Intent(this@MainActivity ,BuscarLocales::class.java)
+                                        intent.putExtra("userEmail", userSnap.child("email").getValue(String::class.java))
+                                        intent.putExtra("userRol", userSnap.child("rol").getValue(String::class.java))
+                                        startActivity(intent)
+                                        finish()
+                                    }
+                                }
+                            }
+
+                            override fun onCancelled(error: DatabaseError) {
+                                TODO("Not yet implemented")
+                            }
+
+                        })
+
+
                     } else {
                         Toast.makeText(this, "Error al iniciar sesión", Toast.LENGTH_SHORT).show()
                     }

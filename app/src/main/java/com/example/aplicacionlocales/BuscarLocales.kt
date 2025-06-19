@@ -1,7 +1,10 @@
 package com.example.aplicacionlocales
 
+import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.widget.ArrayAdapter
+import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.ListView
 import androidx.activity.enableEdgeToEdge
@@ -35,5 +38,20 @@ class BuscarLocales : AppCompatActivity() {
 
         localAdapter = LocalAdapter(listaLocales)
         recyclerLocales.adapter = localAdapter
+
+        val btnCrearLocal = findViewById<Button>(R.id.crearLocal)
+        val btnAgregarLocal = findViewById<Button>(R.id.crearLocal)
+
+        btnAgregarLocal.setOnClickListener{
+            val intent = Intent (this,AgregarLocal::class.java)
+            startActivity(intent)
+        }
+        val userEmail = intent.getStringExtra("userEmail")
+        val userRol = intent.getStringExtra("userRol")
+          if (userRol != "admin") {
+            btnCrearLocal.visibility = View.GONE
+        }
+
+
     }
 }

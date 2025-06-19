@@ -36,16 +36,31 @@
 
 
         <!-- Boton -->
-
-        <Button
-            android:id="@+id/buscarButton"
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Buscar"
-            android:textColor="@android:color/white"
-            android:textStyle="bold"
-            android:backgroundTint="@android:color/black"
-            android:layout_marginTop="10dp" />
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp">
+
+
+            <Button
+                android:id="@+id/buscarButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Buscar"
+                android:textColor="@android:color/white"
+                android:textStyle="bold"
+                android:backgroundTint="@android:color/black"
+                android:layout_marginEnd="10dp"/>
+
+            <Button
+                android:id="@+id/crearLocal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Agregar Local"
+                android:textStyle="bold"
+                android:backgroundTint="#16A95C" />
+        </LinearLayout>
 
         <!-- Locales disponibles -->
         <TextView
